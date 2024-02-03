@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Architectural AR</title>
+    <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,600" rel="stylesheet">
+    <link rel="stylesheet" href="dist/css/style.css">
+	<script src="https://unpkg.com/animejs@3.0.1/lib/anime.min.js"></script>
+    <script src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js"></script>
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.1.1/model-viewer.min.js"></script>
+
+    <style>
+
+        @media only screen and (max-width: 600px) {
+        .desktop-view {
+            display: none;
+          }
+        .mobile-view {
+            display: flex;
+            flex-direction: column;
+          }
+        }
+
+        /* Styles for the notification card */
+        .notification {
+            display: none;
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background-color: #ffffff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Success style */
+        .notification.success {
+            background-color: #ffffff;
+            color: #000000;
+        }
+
+        /* Error style */
+        .notification.error {
+            background-color: #dc3545;
+            color: #ffffff;
+        }
+    </style>
+
+</head>
+<body class="is-boxed has-animations">
+    <section style="height: 80px;">
+        <div class="body-wrap">
+            <div style="background-color: rgba(255, 255, 255, 0); padding: 20px; position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; display: flex; align-items: center;">
+                <a href="#" style="text-decoration: none;">
+                    <img src="dist/images/logo.png" alt="Logo" style="max-height: 80px; width: auto; margin-right: 20px;">
+                </a>
+            </div>
+        </div>
+    </section>
+        
+
+        <main>
+            
+            <section class="hero">
+                <div class="container">
+                    <div class="hero-inner">
+                        <div class="hero-copy">
+                            <h1 class="hero-title mt-0">Visualize Tomorrow: Your Gateway to AR-powered Product Exploration</h1>
+                            <p class="hero-paragraph">Upload your 3D model and let us do our magic!!</p>
+
+                            <div class="hero-cta" style="display: flex; flex-wrap: wrap; justify-content: flex-start;">
+
+                                <!-- Desktop View -->
+                                <div class="desktop-view" style="display: flex; gap: 15px;">
+                                    <label for="modelInputDesktop" class="button button-primary">Upload Model</label>
+                                    <input type="file" id="modelInputDesktop" style="display: none;" accept=".glb, .usdz, .stl, .obj" onchange="loadModel()">
+                                    <button class="button button-primary" onclick="redirectToModelViewer()" id="viewModelButtonDesktop" disabled>View Model</button>
+                                </div>
+                            
+                                <!-- Mobile View -->
+                                <div class="mobile-view" style="display: none; width: 100%; text-align: center;">
+                                    <label for="modelInputMobile" class="button button-primary" style="display: block; margin-bottom: 15px;">Upload Model</label>
+                                    <input type="file" id="modelInputMobile" style="display: block; margin-bottom: 15px;" accept=".glb, .usdz, .stl, .obj" onchange="loadModel()">
+                                    <button class="button button-primary" onclick="redirectToModelViewer()" id="viewModelButtonMobile" disabled style="display: block;">View Model</button>
+                                </div>
+                            
+                            </div>
+                            <div id="notification" class="notification"></div>
+                            
+                            
+                            
+                            
+                            
+                            
+                        </div>
+                        <div class="hero-figure anime-element">
+                            <svg class="placeholder" width="528" height="396" viewBox="0 0 528 396">
+                                <rect width="528" height="396" style="fill:transparent;" />
+                            </svg>
+                            <model-viewer id="viewer"
+                                alt="Uploaded 3D Model"
+                                shadow-intensity="1"
+                                camera-controls
+                                auto-rotate
+                                ar>
+                            </model-viewer>
+                            <div class="hero-figure-box hero-figure-box-01" data-rotation="45deg"></div>
+                            <div class="hero-figure-box hero-figure-box-02" data-rotation="-45deg"></div>
+                            <div class="hero-figure-box hero-figure-box-03" data-rotation="0deg"></div>
+                            <div class="hero-figure-box hero-figure-box-04" data-rotation="-135deg"></div>
+                            <div class="hero-figure-box hero-figure-box-05"></div>
+                            <div class="hero-figure-box hero-figure-box-06"></div>
+                            <div class="hero-figure-box hero-figure-box-07"></div>
+                            <div class="hero-figure-box hero-figure-box-08" data-rotation="-22deg"></div>
+                            <div class="hero-figure-box hero-figure-box-09" data-rotation="-52deg"></div>
+                            <div class="hero-figure-box hero-figure-box-10" data-rotation="-50deg"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <div id="notification" class="notification" style="display: none;"></div>
+
+            <section class="features section">
+                <div class="container">
+					<div class="features-inner section-inner has-bottom-divider">
+                        <div class="features-wrap">
+                            <div class="feature text-center is-revealing">
+                                <div class="feature-inner">
+                                    <div class="feature-icon">
+										<img src="dist/images/feature-icon-01.svg" alt="Feature 01">
+                                    </div>
+                                    <h4 class="feature-title mt-24">Product Visualization</h4>
+                                    <p class="text-sm mb-0">Experience our products in a whole new dimension with augmented reality (AR) visualization, allowing you to interact with virtual models in your real-world environment</p>
+                                </div>
+                            </div>
+							<div class="feature text-center is-revealing">
+                                <div class="feature-inner">
+                                    <div class="feature-icon">
+										<img src="dist/images/feature-icon-02.svg" alt="Feature 02">
+                                    </div>
+                                    <h4 class="feature-title mt-24">Virtual Try-On</h4>
+                                    <p class="text-sm mb-0">Try before you buy with our virtual try-on feature, enabling you to preview how our products look on you through augmented reality technology</p>
+                                </div>
+                            </div>
+                            <div class="feature text-center is-revealing">
+                                <div class="feature-inner">
+                                    <div class="feature-icon">
+										<img src="dist/images/feature-icon-03.svg" alt="Feature 03">
+                                    </div>
+                                    <h4 class="feature-title mt-24">Interactive 3D Product Demo</h4>
+                                    <p class="text-sm mb-0">By accurately representing project components, 3D models assist in generating precise cost estimates. This ensures that construction projects stay within budget constraints..</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            
+        </main>
+
+        
+    </div>
+
+    <script src="dist/js/main.min.js"></script>
+
+    <script>
+        // Get the header element
+        var header = document.getElementById("header");
+        // Get the initial position of the scroll
+        var scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+    
+        // When the user scrolls the page, check the scroll direction and toggle the header visibility
+        window.onscroll = function() {
+            var currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+            if (currentScroll > scrollPosition) {
+                // Scrolling down
+                header.style.top = "-100px"; // Hide the header
+            } else {
+                // Scrolling up
+                header.style.top = "0"; // Show the header
+            }
+            scrollPosition = currentScroll; // Update the scroll position
+        }
+    
+        function loadModel() {
+    const modelInput = document.getElementById('modelInputDesktop');
+    const viewModelButton = document.getElementById('viewModelButtonDesktop');
+    const notification = document.getElementById('notification');
+
+    if (modelInput.files.length > 0) {
+        // Enable the "View Model" button when a model is uploaded
+        viewModelButton.disabled = false;
+
+        // Show a success notification
+        showNotification(notification, 'Model uploaded successfully!', 'success');
+    }
+}
+
+function redirectToModelViewer() {
+    // Redirect to the "modelviewer.html" page
+    window.location.href = 'modelviewer.html';
+}
+
+function showNotification(notificationElement, message, type) {
+    notificationElement.textContent = message;
+
+    // Set the class to control the notification style
+    notificationElement.className = 'notification';
+
+    if (type === 'success') {
+        notificationElement.classList.add('success');
+    } else {
+        notificationElement.classList.add('error');
+    }
+
+    // Show the notification element
+    notificationElement.style.display = 'block';
+
+    // Automatically hide the notification after a few seconds (adjust the timeout as needed)
+    setTimeout(function () {
+        notificationElement.style.display = 'none';
+    }, 3000); // 3 seconds (3000 milliseconds)
+}
+
+    </script>
+    
+</body>
+</html>
