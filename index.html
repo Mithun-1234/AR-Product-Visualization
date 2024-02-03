@@ -194,10 +194,7 @@
     const viewModelButton = document.getElementById('viewModelButtonDesktop');
     const notification = document.getElementById('notification');
 
-    if (modelInput.files.length > 0) {
-        // Enable the "View Model" button when a model is uploaded
-        viewModelButton.disabled = false;
-
+    
         // Show a success notification
         showNotification(notification, 'Model uploaded successfully!', 'success');
     }
