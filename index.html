@@ -77,19 +77,16 @@
                                 <div class="desktop-view" style="display: flex; gap: 15px;">
                                     <label for="modelInputDesktop" class="button button-primary">Upload Model</label>
                                     <input type="file" id="modelInputDesktop" style="display: none;" accept=".glb, .usdz, .stl, .obj" onchange="loadModel()">
-                                    <a href="modelviewer.html">
-                                     <button class="button button-primary" id="viewModelButtonDesktop" >View Model</button>
-                                    </a>  </div>
+			            <button class="button button-primary" onclick="window.location.href = 'modelviewer.html';" id="viewModelButtonDesktop">View Model</button>
+                                </div>
                             
                                 <!-- Mobile View -->
                                 <div class="mobile-view" style="display: none; width: 100%; text-align: center;">
                                     <label for="modelInputMobile" class="button button-primary" style="display: block; margin-bottom: 15px;">Upload Model</label>
                                     <input type="file" id="modelInputMobile" style="display: block; margin-bottom: 15px;" accept=".glb, .usdz, .stl, .obj" onchange="loadModel()">
-                                    <a href="modelviewer.html">
-                                    <button class="button button-primary" id="viewModelButtonDesktop" >View Model</button>
-                                    </a>   </div>
+                                   <button class="button button-primary" onclick="window.location.href = 'modelviewer.html';" id="viewModelButtonDesktop">View Model</button></div>
                             
-                            </div>
+                               </div>
                             <div id="notification" class="notification"></div>
                             
                             
